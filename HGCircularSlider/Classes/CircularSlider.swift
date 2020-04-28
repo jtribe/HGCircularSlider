@@ -364,6 +364,7 @@ open class CircularSlider: UIControl {
      */
     override open func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         sendActions(for: .editingDidBegin)
+        guard isEnabled else { return false }
         
         return true
     }
@@ -372,6 +373,8 @@ open class CircularSlider: UIControl {
      See superclass documentation
      */
     override open func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        guard isEnabled else { return false }
+        
         // the position of the pan gesture
         let touchPosition = touch.location(in: self)
         
@@ -391,6 +394,7 @@ open class CircularSlider: UIControl {
      */
     open override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         sendActions(for: .editingDidEnd)
+        guard isEnabled else { return }
     }
 
     // MARK: Utilities methods
